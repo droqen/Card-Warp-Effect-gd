@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ryfx8fwa8bmn"]
+
+[ext_resource type="Shader" path="res://01-plane-bender/vertex-bend.gdshader" id="1_f0kwf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_f0kwf")
+shader_parameter/bend_rise = 1.5
+shader_parameter/bend_pivot = Vector2(0, 0)
+shader_parameter/bend_axis = Vector2(1, 0.5)
+shader_parameter/bend_radius = 0.5

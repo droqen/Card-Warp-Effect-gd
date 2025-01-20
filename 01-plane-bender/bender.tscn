@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpf4r7ihi570t"]
+
+[ext_resource type="Material" uid="uid://ryfx8fwa8bmn" path="res://01-plane-bender/vertex-bend-mat.tres" id="1_yoi4w"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tw81e"]
+subdivide_width = 64
+subdivide_depth = 64
+
+[node name="Bender" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_tw81e")
+surface_material_override/0 = ExtResource("1_yoi4w")
+
+[node name="camorbiter" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.648386, 0.761312, 0, -0.761312, 0.648386, 0, 1.62315, 0)
+
+[node name="Camera3D" type="Camera3D" parent="camorbiter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+fov = 50.0

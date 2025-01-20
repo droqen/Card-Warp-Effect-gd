@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://duc41m6tde5eb"]
+
+[ext_resource type="Shader" path="res://00-card-warp/card-warp-shader.gdshader" id="1_edb3l"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_edb3l")

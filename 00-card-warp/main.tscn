@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://bv72lmytxfv8d"]
+
+[ext_resource type="Shader" uid="uid://b6ygq8415be0i" path="res://00-card-warp/card-warp-shader-art.tres" id="2_c4ryh"]
+[ext_resource type="Texture2D" uid="uid://txw3hs4putkv" path="res://00-card-warp/ten-of-cups.png" id="3_recvm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fhayo"]
+render_priority = 0
+shader = ExtResource("2_c4ryh")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_swfsh"]
+material = SubResource("ShaderMaterial_fhayo")
+size = Vector2(0.825, 1.475)
+subdivide_width = 8
+subdivide_depth = 8
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h2wgn"]
+size = Vector2(0.77, 1.33)
+subdivide_width = 8
+subdivide_depth = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ox6di"]
+render_priority = 0
+shader = ExtResource("2_c4ryh")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("3_recvm")
+
+[sub_resource type="Environment" id="Environment_bvppd"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.1
+glow_enabled = true
+glow_intensity = 8.0
+glow_bloom = 1.0
+glow_hdr_threshold = 0.9
+adjustment_brightness = 1.5
+adjustment_contrast = 8.0
+adjustment_saturation = 8.0
+
+[node name="Main" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.41731)
+
+[node name="WarpingCardNode" type="Node3D" parent="."]
+transform = Transform3D(0.999577, 0.0252594, -0.0144346, -0.0131752, 0.835387, 0.549504, 0.0259386, -0.549081, 0.835368, 0, 0, 0)
+
+[node name="cardBodyMesh" type="MeshInstance3D" parent="WarpingCardNode"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_swfsh")
+skeleton = NodePath("../..")
+
+[node name="cardArtMesh" type="MeshInstance3D" parent="WarpingCardNode"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.002)
+mesh = SubResource("PlaneMesh_h2wgn")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_ox6di")
+
+[node name="SunLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 1.36493, 1.24703)
+light_energy = 2.0
+
+[node name="SunLight2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.167004, 0.0769207, -0.982951, -0.250488, 0.960932, 0.117756, 0.953607, 0.265883, -0.141212, -2.3723, 1.36493, 0.815632)
+light_color = Color(0.718535, 0.926149, 0.931439, 1)
+
+[node name="SunLight3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.807273, -3.24062, 2.31224)
+light_color = Color(0.929412, 0.698039, 0.592157, 1)
+light_energy = 2.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bvppd")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.973544, -0.205318, 0.100285, 0.128845, 0.855714, 0.501151, -0.188711, -0.474972, 0.859529, 0, 1.55206, 2.86454)
+light_energy = 2.0
+spot_angle = 10.2329
